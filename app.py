@@ -290,13 +290,6 @@ class Team:
         ]
         return teams
 
-    # @classmethod
-    # def league_wide(cls, name):
-    #     teams = Team.all()
-    #     data = []
-    #     for team in teams:
-    #         x = Team(team)
-
     # Offensive methods
 
     def epa_per_play_off(self, operation, **kwargs):
@@ -390,7 +383,7 @@ class Team:
         # Accept down, quarter
 
         hit_query = f"posteam == '{self.team}' & play_type != 'no_play' & pass_attempt == 1 & qb_hit == 1"
-        sack_query = f"posteam == '{self.team}' & play_type != 'no_play' & pass_attempt == 1 & qb_hit == 0 & qb_sack == 1"
+        sack_query = f"posteam == '{self.team}' & play_type != 'no_play' & pass_attempt == 1 & qb_hit == 0 & sack == 1"
         all_pass_query = f"posteam == '{self.team}' & play_type != 'no_play' & pass_attempt == 1"
 
         if "quarter" in kwargs:
@@ -481,7 +474,7 @@ class Team:
         # Accept down, quarter
 
         hit_query = f"defteam == '{self.team}' & play_type != 'no_play' & pass_attempt == 1 & qb_hit == 1"
-        sack_query = f"defteam == '{self.team}' & play_type != 'no_play' & pass_attempt == 1 & qb_hit == 0 & qb_sack == 1"
+        sack_query = f"defteam == '{self.team}' & play_type != 'no_play' & pass_attempt == 1 & qb_hit == 0 & sack == 1"
         all_pass_query = f"defteam == '{self.team}' & play_type != 'no_play' & pass_attempt == 1"
 
         if "quarter" in kwargs:
@@ -604,5 +597,22 @@ teams_list = Team.all()
 # for key in z:
 #     print(key)
 
-stuff = League.epa_per_play_off(quarter=1, down=3)
-print(League.outliers(stuff))
+# teams = Team.all()
+# stuff = []
+# for team in teams:
+#     x = Team(team)
+#     diff = x.qb_pressure_offense(quarter=1) - x.qb_pressure_offense()
+#     stuff.append((team, round(diff, 3)))
+
+# # stuff = League.epa_per_play_def(play='run', quarter=1)
+# stuff = sorted(stuff, key=lambda x: x[1], reverse=True)
+# stuff = League.outliers(stuff)
+# print(stuff)
+
+ne = Team('NE')
+x = ne.qb_pressure_offense()
+print(x)
+
+y = League.epa_per_play_def(down=1, play='pass')
+y = League.outliers(y)
+print(y)
