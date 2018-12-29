@@ -1,10 +1,9 @@
 import numpy as np
 import pandas as pd
+from rawdata import file_path, url
 # import matplotlib.pyplot as plt
 # import seaborn as sn
 
-file_path = './play_by_play_data/regular_season/reg_pbp_2018.csv'
-url = 'https://raw.githubusercontent.com/ryurko/nflscrapR-data/master/play_by_play_data/regular_season/reg_pbp_2018.csv'
 data = pd.read_csv(file_path, low_memory=False)
 
 # with pd.option_context('display.max_rows', 999, 'display.max_colwidth', 25):
